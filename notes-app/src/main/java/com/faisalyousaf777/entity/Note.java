@@ -1,6 +1,7 @@
 package com.faisalyousaf777.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,9 +22,11 @@ public class Note {
     @Column(name = "id", updatable = false)
     private long id;
 
+    @NotBlank(message = "Note Title may not be Blank")
     @Column(name = "title", nullable = false)
     private String title;
 
+    @NotBlank(message = "Note Description may not be Blank")
     @Column(name = "description", nullable = false)
     private String description;
 

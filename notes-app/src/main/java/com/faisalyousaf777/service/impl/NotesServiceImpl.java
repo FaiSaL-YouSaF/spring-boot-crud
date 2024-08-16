@@ -1,6 +1,8 @@
 package com.faisalyousaf777.service.impl;
 
 import com.faisalyousaf777.entity.Note;
+import com.faisalyousaf777.exceptions.BlankNoteException;
+import com.faisalyousaf777.exceptions.NoteAlreadyExistsException;
 import com.faisalyousaf777.exceptions.NoteNotFoundException;
 import com.faisalyousaf777.repository.NotesRepository;
 import com.faisalyousaf777.service.NotesService;
@@ -32,6 +34,12 @@ public class NotesServiceImpl implements NotesService {
 
     @Override
     public void saveNote(Note note) {
+        if (notesRepository.findById(note.getId()).isPresent()) {
+            throw new NoteAlreadyExistsException("Invalid ID : Note with the ID : "+note.getId()+" already exists.");
+        }
+        if (note.getTitle().isBlank() && note.getDescription().isBlank()) {
+            throw new BlankNoteException("Invalid Note : Note is blank.");
+        }
         notesRepository.save(note);
     }
 
