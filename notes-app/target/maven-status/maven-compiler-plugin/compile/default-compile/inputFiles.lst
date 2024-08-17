@@ -1,0 +1,11 @@
+/home/faisal_yousaf/SpringBootProjects/spring-boot-crud/notes-app/src/main/java/com/faisalyousaf777/NotesApplication.java
+/home/faisal_yousaf/SpringBootProjects/spring-boot-crud/notes-app/src/main/java/com/faisalyousaf777/controller/IndexController.java
+/home/faisal_yousaf/SpringBootProjects/spring-boot-crud/notes-app/src/main/java/com/faisalyousaf777/controller/NoteController.java
+/home/faisal_yousaf/SpringBootProjects/spring-boot-crud/notes-app/src/main/java/com/faisalyousaf777/entity/Note.java
+/home/faisal_yousaf/SpringBootProjects/spring-boot-crud/notes-app/src/main/java/com/faisalyousaf777/exceptions/BlankNoteException.java
+/home/faisal_yousaf/SpringBootProjects/spring-boot-crud/notes-app/src/main/java/com/faisalyousaf777/exceptions/GlobalNoteExceptionHandler.java
+/home/faisal_yousaf/SpringBootProjects/spring-boot-crud/notes-app/src/main/java/com/faisalyousaf777/exceptions/NoteAlreadyExistsException.java
+/home/faisal_yousaf/SpringBootProjects/spring-boot-crud/notes-app/src/main/java/com/faisalyousaf777/exceptions/NoteNotFoundException.java
+/home/faisal_yousaf/SpringBootProjects/spring-boot-crud/notes-app/src/main/java/com/faisalyousaf777/repository/NotesRepository.java
+/home/faisal_yousaf/SpringBootProjects/spring-boot-crud/notes-app/src/main/java/com/faisalyousaf777/service/NotesService.java
+/home/faisal_yousaf/SpringBootProjects/spring-boot-crud/notes-app/src/main/java/com/faisalyousaf777/service/impl/NotesServiceImpl.java

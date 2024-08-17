@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Setter
 @Getter
 @NoArgsConstructor
@@ -29,6 +31,13 @@ public class Note {
     @NotBlank(message = "Note Description may not be Blank")
     @Column(name = "description", nullable = false)
     private String description;
+
+//    @NotBlank(message = "Note Created At may not be Blank")
+    @Column(name = "created_at", nullable = true, updatable = false)
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated_at", nullable = true)
+    private LocalDateTime updatedAt;
 
     public Note(String title, String description) {
         this.title = title.trim();
