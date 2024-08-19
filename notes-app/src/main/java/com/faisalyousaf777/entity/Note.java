@@ -2,6 +2,7 @@ package com.faisalyousaf777.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,15 +33,24 @@ public class Note {
     @Column(name = "description", nullable = false)
     private String description;
 
-//    @NotBlank(message = "Note Created At may not be Blank")
-    @Column(name = "created_at", nullable = true, updatable = false)
+    @NotNull(message = "Note Created At may not be Null")
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @Column(name = "updated_at", nullable = true)
     private LocalDateTime updatedAt;
 
-    public Note(String title, String description) {
+
+    public Note(String title, String description, LocalDateTime createdAt) {
+        this.title = title;
+        this.description = description;
+        this.createdAt = createdAt;
+    }
+
+    public Note(String title, String description, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.title = title.trim();
         this.description = description.trim();
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 }

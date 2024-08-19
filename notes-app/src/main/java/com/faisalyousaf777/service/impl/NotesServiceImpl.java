@@ -35,18 +35,15 @@ public class NotesServiceImpl implements NotesService {
     }
 
     @Override
-    public void saveNote(Note note) {
+    public void saveNote(final Note note) {
         if (notesRepository.findById(note.getId()).isPresent()) {
             throw new NoteAlreadyExistsException("Invalid ID : Note with the ID : " + note.getId() + " already exists.");
         }
         if (note.getTitle().isBlank() && note.getDescription().isBlank()) {
             throw new BlankNoteException("Invalid Note : Note is blank.");
         }
-        Note finalNote = new Note();
-        finalNote.setTitle(note.getTitle().trim());
-        finalNote.setDescription(note.getDescription().trim());
-        finalNote.setCreatedAt(LocalDateTime.now());
-        notesRepository.save(finalNote);
+        Note newNote = new Note(note.getTitle().trim(), note.getDescription().trim(), LocalDateTime.now());
+        notesRepository.save(newNote);
     }
 
     @Override
@@ -66,6 +63,6 @@ public class NotesServiceImpl implements NotesService {
         if (notesRepository.findById(id).isEmpty()) {
             throw new NoteNotFoundException("Invalid ID : Note with the ID : " + id + " does not exists.");
         }
-        notesRepository.findById(id);
+        notesRepository.deleteById(id);
     }
 }

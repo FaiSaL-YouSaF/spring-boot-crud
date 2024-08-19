@@ -11,18 +11,18 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.net.URI;
-import java.util.List;
 
 @RestController
-public class NoteController {
+@RequestMapping(path = "/api/v1/notes")
+public class NotesController {
 
     private final NotesService notesService;
 
-    public NoteController(NotesService notesService) {
+    public NotesController(NotesService notesService) {
         this.notesService = notesService;
     }
 
-    @GetMapping("/notes/all")
+    @GetMapping("/all")
     public ResponseEntity<Object> getAllNotes() {
         try {
             return ResponseEntity.ok(notesService.getAllNotes());
@@ -31,7 +31,7 @@ public class NoteController {
         }
     }
 
-    @GetMapping("/notes/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Object> getNoteById(@PathVariable(name = "id") Long id) {
         try {
             return ResponseEntity.ok(notesService.getNoteById(id));
@@ -40,11 +40,11 @@ public class NoteController {
         }
     }
 
-    @PostMapping("/notes/save")
-    public ResponseEntity<Object> saveNote(@RequestBody Note note) {
+    @PostMapping("/add")
+    public ResponseEntity<Object> addNote(@RequestBody Note note) {
         try {
             notesService.saveNote(note);
-            return ResponseEntity.created(URI.create("/notes/save")).body("Saved Successfully!");
+            return ResponseEntity.created(URI.create("/notes/add")).body("Added Successfully!");
         } catch (final NoteAlreadyExistsException ex) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, ex.getMessage());
         } catch (final BlankNoteException ex) {
@@ -54,19 +54,19 @@ public class NoteController {
         }
     }
 
-    @PutMapping("/notes/update/{id}")
+    @PutMapping("/update/{id}")
     public void updateNoteById(@PathVariable(name = "id") Long id, @RequestBody Note note) {
         try {
             notesService.updateNoteById(id, note);
         } catch (final NoteNotFoundException ex) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, ex.getMessage());
         } catch (final Exception ex) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage(), ex.getCause());
         }
         notesService.updateNoteById(id, note);
     }
 
-    @DeleteMapping("/notes/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public void deleteNoteById(@PathVariable(name = "id") Long id) {
         try {
             notesService.deleteNoteById(id);
