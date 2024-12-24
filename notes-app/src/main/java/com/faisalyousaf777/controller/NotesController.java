@@ -5,6 +5,7 @@ import com.faisalyousaf777.exceptions.BlankNoteException;
 import com.faisalyousaf777.exceptions.NoteAlreadyExistsException;
 import com.faisalyousaf777.exceptions.NoteNotFoundException;
 import com.faisalyousaf777.service.NotesService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ import java.net.URI;
 @RequestMapping(path = "/api/v1/notes")
 public class NotesController {
 
+    @Autowired
     private final NotesService notesService;
 
     public NotesController(NotesService notesService) {

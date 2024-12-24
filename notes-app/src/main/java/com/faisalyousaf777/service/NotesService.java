@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface NotesService {
-    public Optional<List<Note>> getAllNotes();
-    public Optional<Note> getNoteById(final Long id);
-    public void saveNote(final Note note);
-    public void updateNoteById(final Long id, final Note note);
-    public void deleteNoteById(final Long id);
+    Optional<List<Note>> getAllNotes();
+    Optional<Note> getNoteById(final Long id);
+    void saveNote(final Note note);
+    void updateNoteById(final Long id, final Note note);
+    void deleteNoteById(final Long id);
 }

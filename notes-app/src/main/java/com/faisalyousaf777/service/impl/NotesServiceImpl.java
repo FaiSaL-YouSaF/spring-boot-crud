@@ -6,6 +6,7 @@ import com.faisalyousaf777.exceptions.NoteAlreadyExistsException;
 import com.faisalyousaf777.exceptions.NoteNotFoundException;
 import com.faisalyousaf777.repository.NotesRepository;
 import com.faisalyousaf777.service.NotesService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -15,6 +16,7 @@ import java.util.Optional;
 @Service
 public class NotesServiceImpl implements NotesService {
 
+    @Autowired
     private final NotesRepository notesRepository;
 
     public NotesServiceImpl(NotesRepository notesRepository) {
@@ -59,7 +61,7 @@ public class NotesServiceImpl implements NotesService {
     }
 
     @Override
-    public void deleteNoteById(Long id) {
+    public void deleteNoteById(final Long id) {
         if (notesRepository.findById(id).isEmpty()) {
             throw new NoteNotFoundException("Invalid ID : Note with the ID : " + id + " does not exists.");
         }
