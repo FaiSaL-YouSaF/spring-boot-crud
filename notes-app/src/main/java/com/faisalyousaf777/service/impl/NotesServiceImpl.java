@@ -6,6 +6,7 @@ import com.faisalyousaf777.exceptions.NoteAlreadyExistsException;
 import com.faisalyousaf777.exceptions.NoteNotFoundException;
 import com.faisalyousaf777.repository.NotesRepository;
 import com.faisalyousaf777.service.NotesService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,14 +15,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class NotesServiceImpl implements NotesService {
 
     @Autowired
     private final NotesRepository notesRepository;
 
-    public NotesServiceImpl(NotesRepository notesRepository) {
-        this.notesRepository = notesRepository;
-    }
 
     @Override
     public Optional<List<Note>> getAllNotes() {

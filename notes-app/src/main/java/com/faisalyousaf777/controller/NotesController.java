@@ -5,6 +5,7 @@ import com.faisalyousaf777.exceptions.BlankNoteException;
 import com.faisalyousaf777.exceptions.NoteAlreadyExistsException;
 import com.faisalyousaf777.exceptions.NoteNotFoundException;
 import com.faisalyousaf777.service.NotesService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,14 +16,12 @@ import java.net.URI;
 
 @RestController
 @RequestMapping(path = "/api/v1/notes")
+@AllArgsConstructor
 public class NotesController {
 
     @Autowired
     private final NotesService notesService;
 
-    public NotesController(NotesService notesService) {
-        this.notesService = notesService;
-    }
 
     @GetMapping("/all")
     public ResponseEntity<Object> getAllNotes() {
